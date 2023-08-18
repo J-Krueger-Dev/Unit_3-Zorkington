@@ -14,11 +14,11 @@
 */
 
 export const gameDetails = {   
-    title: 'Game Title',
+    title: 'A Day at the Park',
     desc: 'Welcome to the world of... here are some quick rules & concepts...',
-    author: 'Student Name',
-    cohort: 'SBPT-2022',
-    startingRoomDescription: 'What you see before you is...',
+    author: 'Joshua Krueger',
+    cohort: 'PTSB-2023',
+    startingRoomDescription: 'What you see before you is an open field in a beatiful local park, birds chirping, children playing, and an itch to play tennis.',
     playerCommands: [
         // replace these with your games commands as needed
         'inspect', 'view', 'look', 'pickup',
