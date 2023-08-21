@@ -41,9 +41,15 @@ class Item {
 inspect(){
     return this.desc;
 }
-view(){
+pickup(){
+    if(this.boolean === true){
+        return `${this.name} has been added to inventory`
+    }else{
+        return `${this.name} cannot be moved`
+    }
     
 }
+
 }
 
 class Room{
@@ -53,20 +59,23 @@ class Room{
     this.desc = desc;
     this.items= items
     }
+    view(){
+        return this.location + this.desc
+    }
     //! add methods here later
 }
 console.log(Room)
 const room1 = new Room({
     loaction: 'open field',
     exits: [room2,room4],
-    desc: `you are in an open fiend with`, // add items?
+    desc: `you are in an open fiend with ${this.items}`, // add items?
     items:[item1,item2,item3]
 })
 
 const room2 = new Room({
     location:'play ground',
     exits: [room1,room3,room4],
-    desc: `you're run of the mill playgound, lots of kids today`,
+    desc: `you're run of the mill playgound, lots of kids today looks like there are a few things here, ${this.items}`,
     items: [item4,item5,item6]
 
 })
@@ -74,14 +83,14 @@ const room2 = new Room({
 const room3 = new Room({
     location:'tennis court',
     exits: [room2,room4],
-    desc: `you're run of the mill playgound, lots of kids today`,
+    desc: `nice looking tennis court with ${this.items}`,
     items: [item7,item8,item9]
 
 })
 const room4 = new Room({
-    location:'play ground',
+    location:'Fountain',
     exits: [room1,room2,room3],
-    desc: `you're run of the mill playgound, lots of kids today`,
+    desc: `A big fountain with ${this.items}`,
     items: [item10,item11,item12]
 
 })
