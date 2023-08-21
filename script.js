@@ -21,13 +21,152 @@ export const gameDetails = {
     startingRoomDescription: 'What you see before you is an open field in a beatiful local park, birds chirping, children playing, and an itch to play tennis.',
     playerCommands: [
         // replace these with your games commands as needed
-        'inspect', 'view', 'look', 'pickup',
+        'inspect', 'view', 'look', 'pickup','move'
     ]
     // Commands are basic things that a player can do throughout the game besides possibly moving to another room. This line will populate on the footer of your game for players to reference. 
     // This shouldn't be more than 6-8 different commands.
 }
 
 // Your code here
+
+
+// * creating Item class to contain all of my Item objects with three parameters
+class Item {
+    constructor(name,desc,location,boolean){ // * maybe add true or false for pickup ability?
+    this.name = name;
+    this.desc = desc;
+    this.location = location;
+    this.boolean = boolean
+}
+inspect(){
+    return this.desc;
+}
+view(){
+    
+}
+}
+
+class Room{
+    constructor(location,exits,desc,items){
+    this.location = location
+    this.exits = exits;
+    this.desc = desc;
+    this.items= items
+    }
+    //! add methods here later
+}
+console.log(Room)
+const room1 = new Room({
+    loaction: 'open field',
+    exits: [room2,room4],
+    desc: `you are in an open fiend with`, // add items?
+    items:[item1,item2,item3]
+})
+
+const room2 = new Room({
+    location:'play ground',
+    exits: [room1,room3,room4],
+    desc: `you're run of the mill playgound, lots of kids today`,
+    items: [item4,item5,item6]
+
+})
+
+const room3 = new Room({
+    location:'tennis court',
+    exits: [room2,room4],
+    desc: `you're run of the mill playgound, lots of kids today`,
+    items: [item7,item8,item9]
+
+})
+const room4 = new Room({
+    location:'play ground',
+    exits: [room1,room2,room3],
+    desc: `you're run of the mill playgound, lots of kids today`,
+    items: [item10,item11,item12]
+
+})
+
+const item1 = new Item({
+    name:`wild flowers`,
+    desc:`wow what a pleasent bunch of flowers`,
+    location: room1,
+    boolean: true
+});
+
+const item2 = new Item({
+    name:`tennis ball`,
+    desc: `this ball has mud stains, but it'll do`,
+    location:room1,
+    boolean: true
+});
+
+const item3 = new Item({
+    name:`statue`,
+    desc:`Giant brass statue of Pizza`,
+    location:room1,
+    boolean: false
+});
+
+const item4 = new Item({
+    name:`swing set`,
+    desc:`old rusty swing set`,
+    location: room2,
+    boolean: false
+})
+
+const item5 = new Item({
+    name:`bird`,
+    desc:`Chirp Chirp`,
+    location:room2,
+    boolean: false
+})
+
+const item6 = new Item({
+   name: `kite`,
+    desc:`red kite, doesnt look like it can fly`,
+   location: room2,
+   boolean: true
+})
+
+const item7 = new Item({
+    name: 'light pole',
+    desc: `LED SO BRIGHT`,
+    location: room3,
+    boolean: false
+})
+
+const item8 = new Item({
+    name: `score sheet`,
+    desc: `I need something to keep track of score`,
+    location: room3,
+    boolean: true
+})
+
+const item9 = new Item({
+    name: `empty court`,
+    desc: `court looks to be in good shape`,
+    location: room3,
+    boolean: false
+})
+const item10 = new Item({
+    name: `park bench`,
+    desc: `peaceful bench by the water feature`,
+    location: room4,
+    boolean: false
+})
+const item11 = new Item({
+    name: `racket`,
+    desc: `wonder how this ended up here, might need it to play`,
+    location: room4,
+    boolean: true
+})
+const item12 = new Item({
+    name: `marker`,
+    desc: `I could keep track of score with this`,
+    location: room4,
+    boolean: true
+})
+
 
 export const domDisplay = (playerInput) => {
     /* 
@@ -62,4 +201,5 @@ export const domDisplay = (playerInput) => {
     */
 
     // Your code here
+
 } 
