@@ -21,7 +21,7 @@ export const gameDetails = {
     startingRoomDescription: 'What you see before you is an open field in a beatiful local park, birds chirping, children playing, and an itch to play tennis.',
     playerCommands: [
         // replace these with your games commands as needed
-        'inspect', 'view', 'look', 'pickup','move'
+        'inspect', 'view', 'pickup','move'
     ]
     // Commands are basic things that a player can do throughout the game besides possibly moving to another room. This line will populate on the footer of your game for players to reference. 
     // This shouldn't be more than 6-8 different commands.
@@ -32,7 +32,7 @@ export const gameDetails = {
 
 // * creating Item class to contain all of my Item objects with three parameters
 class Item {
-    constructor(name,desc,location,boolean){ // * maybe add true or false for pickup ability?
+    constructor({name,desc,location,boolean}){ // * maybe add true or false for pickup ability?
     this.name = name;
     this.desc = desc;
     this.location = location;
@@ -53,44 +53,44 @@ pickup(){
 }
 
 class Room{
-    constructor(location,exits,desc,items){
-    this.location = location
+    constructor({location,exits,desc,items}){
+    this.location = location;
     this.exits = exits;
     this.desc = desc;
-    this.items= items
+    this.items= items;
     }
     view(){
         return this.location + this.desc
     }
+   
+    }
     //! add methods here later
-}
-console.log(Room)
+
 const room1 = new Room({
-    loaction: 'open field',
+    location: 'open field',
     exits: [room2,room4],
-    desc: `you are in an open fiend with ${this.items}`, // add items?
+    desc: `you are in an open fiend with `, // add items?
     items:[item1,item2,item3]
 })
-
+console.log(room1)
 const room2 = new Room({
     location:'play ground',
     exits: [room1,room3,room4],
-    desc: `you're run of the mill playgound, lots of kids today looks like there are a few things here, ${this.items}`,
+    desc: `you're run of the mill playgound, lots of kids today looks like there are a few things here`,
     items: [item4,item5,item6]
 
 })
-
 const room3 = new Room({
     location:'tennis court',
     exits: [room2,room4],
-    desc: `nice looking tennis court with ${this.items}`,
+    desc: `nice looking tennis court with ${room3.items}`,
     items: [item7,item8,item9]
 
 })
 const room4 = new Room({
     location:'Fountain',
     exits: [room1,room2,room3],
-    desc: `A big fountain with ${this.items}`,
+    desc: `A big fountain with ${room4.items}`,
     items: [item10,item11,item12]
 
 })
@@ -176,8 +176,50 @@ const item12 = new Item({
     boolean: true
 })
 
+let roomDict = {
+    'room1': room1,
+    'room2': room2,
+    'room3': room3,
+    'room4': room4
+}
+let itemDict={
+    'item1': item1,
+    'item2': item2,
+    'item3': item3,
+    'item4': item4, 
+    'item5': item5, 
+    'item6': item6,
+    'item7': item7,
+    'item8': item8,
+    'item9': item9,
+    'item10': item10, 
+    'item11': item11, 
+    'item12': item12,  
+}
+let action
+let target 
 
+let playerInventory = []
+let currentRoom = room1
 export const domDisplay = (playerInput) => {
+   let displayText = '';
+   const playerInput2= playerInput.toLowerCase()
+
+   [action,target] = playerInput2.split('')
+
+   if(action === 'move'){
+    if(target){
+      if(currentRoom.exits.includes(target)){
+        currentRoom= roomDict[target];
+        displayText= `you have walked to the ${currentRoom.location}`
+      }else{
+        displayText='you cannot go that way'
+      }
+    }
+   }
+
+
+
     /* 
         TODO: for students
         - This function must return a string. 
@@ -210,5 +252,4 @@ export const domDisplay = (playerInput) => {
     */
 
     // Your code here
-
-} 
+}

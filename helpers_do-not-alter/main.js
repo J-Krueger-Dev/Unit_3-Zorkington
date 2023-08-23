@@ -1,5 +1,5 @@
 //! DO NOT ALTER THIS CODE // 
-import { gameDetails, domDisplay } from "../script.js";
+import { gameDetails, domDisplay } from "../script.mjs";
 
 const userInput = document.querySelector('input');
 const title = document.querySelector('title');
