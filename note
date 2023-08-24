@@ -62,34 +62,34 @@ class Room{
     view(){
         return this.location + this.desc
     }
-   
+     //! add methods here later
     }
-    //! add methods here later
+  
 
 const room1 = new Room({
     location: 'open field',
-    exits: [room2,room4],
+    exits: ['room2','room4'],
     desc: `you are in an open fiend with `, // add items?
     items:[item1,item2,item3]
 })
 console.log(room1)
 const room2 = new Room({
     location:'play ground',
-    exits: [room1,room3,room4],
+    exits: ['room1','room3','room4'],
     desc: `you're run of the mill playgound, lots of kids today looks like there are a few things here`,
     items: [item4,item5,item6]
 
 })
 const room3 = new Room({
     location:'tennis court',
-    exits: [room2,room4],
+    exits: ['room2','room4'],
     desc: `nice looking tennis court with ${room3.items}`,
     items: [item7,item8,item9]
 
 })
 const room4 = new Room({
     location:'Fountain',
-    exits: [room1,room2,room3],
+    exits: ['room1','room2','room3'],
     desc: `A big fountain with ${room4.items}`,
     items: [item10,item11,item12]
 
@@ -183,7 +183,7 @@ let roomDict = {
     'room4': room4
 }
 let itemDict={
-    'item1': item1,
+    'wild flowers': item1,
     'item2': item2,
     'item3': item3,
     'item4': item4, 
@@ -205,8 +205,8 @@ export const domDisplay = (playerInput) => {
    let displayText = '';
    const playerInput2= playerInput.toLowerCase()
 
-   [action,target] = playerInput2.split('')
-
+   [action,target] = playerInput2.split(' ')
+    console.log(target)
    if(action === 'move'){
     if(target){
       if(currentRoom.exits.includes(target)){

@@ -67,31 +67,31 @@ class Room{
 
 const room1 = new Room({
     location: 'open field',
-    exits: [room2,room4],
-    desc: `you are in an open fiend with `, // add items?
-    items:[item1,item2,item3]
+    exits: ['room2','room4'],
+    desc: `you are in an open field with `, // add items?
+    items:['item1','item2','item3']
 })
 console.log(room1)
 const room2 = new Room({
     location:'play ground',
-    exits: [room1,room3,room4],
-    desc: `you're run of the mill playgound, lots of kids today looks like there are a few things here, ${room2.items}`,
-    items: [item4,item5,item6]
+    exits: ['room1','room3','room4'],
+    desc: `you're run of the mill playgound, lots of kids today looks like there are a few things here,`,
+    items: ['item4','item5','item6']
 
 })
 
 const room3 = new Room({
     location:'tennis court',
-    exits: [room2,room4],
-    desc: `nice looking tennis court with ${room3.items}`,
-    items: [item7,item8,item9]
+    exits: ['room2','room4'],
+    desc: `nice looking tennis court with `,
+    items: ['item7','item8','item9']
 
 })
 const room4 = new Room({
     location:'Fountain',
-    exits: [room1,room2,room3],
-    desc: `A big fountain with ${room4.items}`,
-    items: [item10,item11,item12]
+    exits: ['room1','room2','room3'],
+    desc: `A big fountain with `,
+    items: ['item10','item11','item12']
 
 })
 
@@ -176,8 +176,53 @@ const item12 = new Item({
     boolean: true
 })
 
+let roomDict = {
+    'room1': room1,
+    'room2': room2,
+    'room3': room3,
+    'room4': room4
+}
+let itemDict={
+    'wild flowers': item1,
+    'item2': item2,
+    'item3': item3,
+    'item4': item4, 
+    'item5': item5, 
+    'item6': item6,
+    'item7': item7,
+    'item8': item8,
+    'item9': item9,
+    'item10': item10, 
+    'item11': item11, 
+    'item12': item12,  
+}
+//let action
+//let target 
 
+let playerInventory = []
+let currentRoom = room1
+
+//let displayText = '';
+   /*const playerInput2= playerInput.toLowerCase()
+    console.log(playerInput2)
+   [action,target] = playerInput2.split(' ')
+    console.log(target) */
 export const domDisplay = (playerInput) => {
+   //let currentRoom = room1
+    let [action,target] = playerInput.split(' ');
+   console.log(target);
+   console.log(action);
+   if(action === 'move'){
+    if(target){
+        console.log(currentRoom)
+      if(currentRoom.exits.includes(target)){
+        currentRoom= roomDict[target];
+        return`you have walked to the ${currentRoom.location}`
+      }else{
+        return 'you cannot go that way'
+      }
+    }
+   }
     /* 
         TODO: for students
         - This function must return a string. 
