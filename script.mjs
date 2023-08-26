@@ -248,6 +248,12 @@ export const domDisplay = (playerInput) => {
   } 
 }
 console.log(playerInventory)
+
+if(action === 'look')
+    if(target)
+        if(currentRoom){
+        return currentRoom.desc + currentRoom.items
+        }
     /* 
         TODO: for students
         - This function must return a string. 
