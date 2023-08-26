@@ -21,7 +21,7 @@ export const gameDetails = {
     startingRoomDescription: 'What you see before you is an open field in a beatiful local park, birds chirping, children playing, and an itch to play tennis.',
     playerCommands: [
         // replace these with your games commands as needed
-        'inspect', 'view', 'look', 'pickup','move'
+        'inspect', 'view', 'look', 'pickup','move','drop'
     ]
     // Commands are basic things that a player can do throughout the game besides possibly moving to another room. This line will populate on the footer of your game for players to reference. 
     // This shouldn't be more than 6-8 different commands.
@@ -36,20 +36,18 @@ class Item {
     this.name = name;
     this.desc = desc;
     this.location = location;
-    this.boolean = boolean
+    this.boolean = boolean;
 }
 inspect(){
     return this.desc;
 }
 pickup(){
     if(this.boolean === true){
-        return `${this.name} has been added to inventory`
+        return `${this.name} has been added to inventory`;
     }else{
-        return `${this.name} cannot be moved`
+        return `${this.name} cannot be moved`;
     }
-    
-}
-
+} 
 }
 
 class Room{
@@ -70,7 +68,7 @@ const room1 = new Room({
     exits: ['room2','room4'],
     desc: `you are in an open field with `, // add items?
     items:['item1','item2','item3']
-})
+});
 console.log(room1)
 const room2 = new Room({
     location:'play ground',
@@ -78,7 +76,7 @@ const room2 = new Room({
     desc: `you're run of the mill playgound, lots of kids today looks like there are a few things here,`,
     items: ['item4','item5','item6']
 
-})
+});
 
 const room3 = new Room({
     location:'tennis court',
@@ -86,17 +84,17 @@ const room3 = new Room({
     desc: `nice looking tennis court with `,
     items: ['item7','item8','item9']
 
-})
+});
 const room4 = new Room({
     location:'Fountain',
     exits: ['room1','room2','room3'],
     desc: `A big fountain with `,
     items: ['item10','item11','item12']
 
-})
+});
 
 const item1 = new Item({
-    name:`wild flowers`,
+    name:`lowers`,
     desc:`wow what a pleasent bunch of flowers`,
     location: room1,
     boolean: true
@@ -183,9 +181,9 @@ let roomDict = {
     'room4': room4
 }
 let itemDict={
-    'wild flowers': item1,
+    'item1': item1,
     'item2': item2,
-    'item3': item3,
+    'item3' : item3,
     'item4': item4, 
     'item5': item5, 
     'item6': item6,
@@ -199,8 +197,8 @@ let itemDict={
 //let action
 //let target 
 
-let playerInventory = []
-let currentRoom = room1
+let playerInventory = [];
+let currentRoom = room1;
 
 //let displayText = '';
    /*const playerInput2= playerInput.toLowerCase()
@@ -212,17 +210,44 @@ export const domDisplay = (playerInput) => {
     let [action,target] = playerInput.split(' ');
    console.log(target);
    console.log(action);
+   
    if(action === 'move'){
     if(target){
         console.log(currentRoom)
       if(currentRoom.exits.includes(target)){
         currentRoom= roomDict[target];
-        return`you have walked to the ${currentRoom.location}`
+        return`you have walked to the ${currentRoom.location}`;
       }else{
-        return 'you cannot go that way'
+        return 'you cannot go that way';
       }
     }
    }
+
+   if(action == 'pickup'){
+    if(target);
+     console.log(target)    ; 
+      if(currentRoom.items.includes(target) && true){ 
+        playerInventory.push(target);
+        console.log(playerInventory);
+        return `you have picked up ${target}`;
+      }else{
+        return `you cannot pick up ${target}`;
+      }
+   }
+   console.log(playerInventory)
+
+   if (action === 'drop') {
+    if (target) {
+        if (playerInventory.includes(target)) {
+            playerInventory = playerInventory.filter(item => item !== target);
+            currentRoom.items.push(target);
+            return `You dropped ${target} in the ${currentRoom.location}.`;
+        } else {
+            return `${target} is not your inventory.`
+    }
+  } 
+}
+console.log(playerInventory)
     /* 
         TODO: for students
         - This function must return a string. 
@@ -255,5 +280,7 @@ export const domDisplay = (playerInput) => {
     */
 
     // Your code here
+    if(playerInput != gameDetails.playerCommands[playerInput])
+    return "please try a different command"
 
-} 
+}
