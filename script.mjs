@@ -41,6 +41,7 @@ class Item {
 inspect(){
     return this.desc;
 }
+// never got these methods to run the way i was imagining it to
 pickup(){
     if(this.boolean === true){
         return `${this.name} has been added to inventory`;
@@ -57,6 +58,7 @@ class Room{
     this.desc = desc;
     this.items= items;
     }
+    // having trouble implementing any method i create but this was meant to work in player input area
     view(){
         return this.location + this.desc
     }
@@ -173,13 +175,14 @@ const item12 = new Item({
     location: room4,
     boolean: true
 })
-
+// dictionary of rooms to allow for strings from player input to be intrepreted from variables created from the rooms
 let roomDict = {
     'room1': room1,
     'room2': room2,
     'room3': room3,
     'room4': room4
 }
+// dictionary of items same as room Dict above for purposes of taking a string and relating it to a value
 let itemDict={
     'item1': item1,
     'item2': item2,
@@ -196,8 +199,9 @@ let itemDict={
 }
 //let action
 //let target 
-
+//will ad an item to inventory later in the code
 let playerInventory = [];
+//defines our first room and that we are in it
 let currentRoom = room1;
 
 //let displayText = '';
@@ -210,7 +214,7 @@ export const domDisplay = (playerInput) => {
     let [action,target] = playerInput.split(' ');
    console.log(target);
    console.log(action);
-   
+   // action allowing players to move from room to room if the exit is available in that room and denying if they cannot
    if(action === 'move'){
     if(target){
         console.log(currentRoom)
@@ -222,7 +226,7 @@ export const domDisplay = (playerInput) => {
       }
     }
    }
-
+    // this is allowing my player to pickup and item once promted... this cant figure out how to make an item unable to be picked up
    if(action == 'pickup'){
     if(target);
      console.log(target)    ; 
@@ -235,7 +239,7 @@ export const domDisplay = (playerInput) => {
       }
    }
    console.log(playerInventory)
-
+   /// this is allowing my player to drop an item into a room once they have picked it up
    if (action === 'drop') {
     if (target) {
         if (playerInventory.includes(target)) {
@@ -248,7 +252,7 @@ export const domDisplay = (playerInput) => {
   } 
 }
 console.log(playerInventory)
-
+// look if statement give the current room description with items in the room
 if(action === 'look')
     if(target)
         if(currentRoom){
@@ -286,6 +290,7 @@ if(action === 'look')
     */
 
     // Your code here
+    // this was created to give an error if the player imput does not match a command
     if(playerInput != gameDetails.playerCommands[playerInput])
     return "please try a different command"
 
